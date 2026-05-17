@@ -1,0 +1,424 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pamflet</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (Poppins & Amiri untuk Arab) -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-100 text-slate-800 min-h-screen flex flex-col font-sans selection:bg-emerald-100">
+
+    <!-- Top Navigation Bar -->
+    <header class="bg-emerald-700 text-white shadow-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <h1 class="text-lg sm:text-xl font-bold tracking-tight">Pamflet Digital</h1>
+                <span class="text-xs bg-emerald-800 text-emerald-100 border border-emerald-600 px-3 py-1 rounded-full font-bold uppercase tracking-wider">
+                    Edisi Daerah
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- Left Side: Control Panel & Form Edit Text -->
+            <div class="lg:col-span-5 space-y-6">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <h3 class="font-bold text-lg text-slate-800 mb-4 flex items-center gap-2 border-b pb-3">
+                        <i class="fa-solid fa-pen-to-square text-emerald-600"></i> Edit Detail Pengumuman
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Judul / Pengumuman Untuk</label>
+                            <input type="text" id="inputTarget" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-sm font-semibold" value="CABERAWIT RECOSOLO RAYA" oninput="drawFlyer()">
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Nama Masjid / Tempat</label>
+                                <input type="text" id="inputTempat" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-sm font-semibold" value="MASJID RCTI" oninput="drawFlyer()">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Waktu Mulai</label>
+                                <input type="text" id="inputWaktu" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-sm font-semibold" value="15.15 WIB - Selesai" oninput="drawFlyer()">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Peserta</label>
+                                <input type="text" id="inputPeserta" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-sm" value="Seluruh Caberawit Recosolo Raya" oninput="drawFlyer()">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Materi Pembelajaran</label>
+                                <input type="text" id="inputMateri" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-sm font-semibold text-emerald-700" value="BCM (Bermain, Cerita, Menyanyi)" oninput="drawFlyer()">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Poin Tata Tertib / Amal Sholih (Pisahkan dengan baris baru)</label>
+                            <textarea id="inputNB" rows="6" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-sm leading-relaxed" oninput="drawFlyer()">Datang sebelum jam 15:15 tepat waktu
+Sudah suci/berwudhu rapi dari rumah
+Memakai pakaian sopan & jilbab slem (no segi-4/legging)
+Mengutamakan salat berjamaah di masjid
+Maksimalkan kehadiran dengan niat karena Allah
+Membawa infak terbaik untuk kemakmuran masjid</textarea>
+                            <p class="text-[10px] text-slate-400 mt-1">*Ubah teks di atas untuk merubah isi poin-poin pamflet secara instan.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Theme / Color Picker -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <h3 class="font-bold text-sm text-slate-800 mb-3 uppercase tracking-wider">Pilihan Tema Warna</h3>
+                    <div class="flex gap-3">
+                        <button onclick="changeTheme('#15803d', '#14532d')" class="w-8 h-8 rounded-full bg-emerald-700 border-2 border-white ring-2 ring-emerald-500 transition-transform hover:scale-110"></button>
+                        <button onclick="changeTheme('#1e3a8a', '#172554')" class="w-8 h-8 rounded-full bg-blue-900 border-2 border-white ring-1 ring-slate-200 transition-transform hover:scale-110"></button>
+                        <button onclick="changeTheme('#0f766e', '#115e59')" class="w-8 h-8 rounded-full bg-teal-700 border-2 border-white ring-1 ring-slate-200 transition-transform hover:scale-110"></button>
+                        <button onclick="changeTheme('#4338ca', '#312e81')" class="w-8 h-8 rounded-full bg-indigo-700 border-2 border-white ring-1 ring-slate-200 transition-transform hover:scale-110"></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Canvas & Realtime Preview -->
+            <div class="lg:col-span-7 flex flex-col items-center justify-start space-y-4">
+                <div class="bg-white p-4 rounded-3xl border border-slate-200 shadow-md max-w-full overflow-x-auto text-center">
+                    <!-- HTML5 Hidden Canvas (High Resolution 1000x1400) -->
+                    <canvas id="flyerCanvas" width="1000" height="1400" class="hidden"></canvas>
+                    
+                    <!-- Realtime Web Preview Image -->
+                    <div class="relative group cursor-pointer inline-block">
+                        <img id="previewImage" class="w-[390px] max-w-full rounded-2xl shadow-lg border border-slate-100 mx-auto transition-transform active:scale-[0.98]" alt="Pratinjau Pamflet Digital">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center rounded-2xl transition-opacity pointer-events-none">
+                            <span class="text-white text-xs font-bold bg-slate-900/80 px-4 py-2 rounded-lg flex items-center gap-2">
+                                <i class="fa-solid fa-hand-pointer"></i> Sentuh & Tahan untuk Simpan
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 p-3 bg-emerald-50 rounded-2xl border border-emerald-100 text-left max-w-[390px] mx-auto">
+                        <p class="text-[11px] text-emerald-800 font-bold flex items-start gap-1.5 leading-relaxed">
+                            <span>📲</span>
+                            <span><strong>PANDUAN MENYIMPAN GAMBAR:</strong><br>
+                            Karena pembatasan browser, jika tombol "Simpan Gambar" tidak merespon: ketuk dan tahan (tahan 2 detik) pada gambar di atas, lalu pilih <strong>"Simpan Gambar"</strong> atau <strong>"Download Gambar"</strong> langsung ke galeri HP Anda.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-3 w-full max-w-[390px]">
+                    <button onclick="downloadFlyer()" class="flex-grow bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-4 rounded-2xl shadow-lg transition-all flex justify-center items-center gap-2">
+                        <i class="fa-solid fa-download"></i> Simpan Gambar
+                    </button>
+                    <button onclick="openInModal()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-4 rounded-2xl shadow-lg transition-all flex justify-center items-center gap-2" title="Gunakan ini jika unduhan biasa gagal">
+                        <i class="fa-solid fa-expand"></i> Buka Gambar Penuh
+                    </button>
+                    <button onclick="shareDirect()" class="bg-slate-800 hover:bg-slate-900 text-white p-3.5 rounded-2xl shadow-lg transition-all flex items-center justify-center" title="Salin Info Teks WhatsApp">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Fullscreen Image Modal (Safe Mobile Lightbox) -->
+    <div id="imageLightbox" class="fixed inset-0 bg-slate-950/95 z-50 hidden flex flex-col justify-center items-center p-4">
+        <div class="absolute top-4 right-4 z-50">
+            <button onclick="closeModal()" class="bg-slate-800 hover:bg-slate-700 text-white p-3 rounded-full shadow-lg transition-colors flex items-center justify-center">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+        </div>
+        <div class="max-h-[80vh] overflow-auto max-w-full text-center">
+            <img id="lightboxImage" class="max-h-[75vh] max-w-full rounded-xl mx-auto shadow-2xl border border-slate-800" alt="Gambar Pamflet Ukuran Penuh">
+        </div>
+        <div class="mt-6 text-center text-slate-300 max-w-md">
+            <p class="text-sm font-bold text-white flex items-center justify-center gap-2 mb-1">
+                📌 TEKAN LAMA UNTUK MENYIMPAN
+            </p>
+            <p class="text-xs text-slate-400">
+                Ketuk dan tahan gambar di atas selama 2 detik untuk memunculkan menu bawaan HP, lalu pilih <strong>"Simpan Gambar"</strong>.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Default Theme Colors
+        let primaryColor = "#15803d"; // Emerald
+        let secondaryColor = "#14532d"; // Dark Emerald
+
+        // Teks Arab Resmi dari Pengumuman
+        const salamArabHeader = "السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ";
+        const hamdalahArabFooter = "اَلْحَمْدُ لِلهِ جَزَاكُمُ اللهُ خَيْرًا";
+        const salamArabFooter = "وَالسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ";
+
+        window.onload = function() {
+            // Gambar poster secara instan tanpa menunggu pemuatan aset eksternal
+            drawFlyer();
+        };
+
+        function changeTheme(pCol, sCol) {
+            primaryColor = pCol;
+            secondaryColor = sCol;
+            drawFlyer();
+        }
+
+        // FUNGSI UTAMA MENGGAMBAR POSTER PAMFLET (TANPA LOGO / GAMBAR)
+        function drawFlyer() {
+            const canvas = document.getElementById('flyerCanvas');
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+
+            // Bersihkan Canvas
+            ctx.clearRect(0, 0, width, height);
+
+            // 1. BACKGROUND GRADIENT
+            const gradient = ctx.createLinearGradient(0, 0, 0, height);
+            gradient.addColorStop(0, '#ffffff');
+            gradient.addColorStop(1, '#f8fafc');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, height);
+
+            // 2. HEADER BLOCK (Solid & Lengkung Elegan Hijau Islami di Atas)
+            ctx.fillStyle = primaryColor;
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(width, 0);
+            ctx.lineTo(width, 260);
+            ctx.quadraticCurveTo(width / 2, 310, 0, 260);
+            ctx.closePath();
+            ctx.fill();
+
+            // 3. GOLDEN FRAMING BORDER (Garis Bingkai Mewah)
+            ctx.strokeStyle = "#e2e8f0";
+            ctx.lineWidth = 15;
+            ctx.strokeRect(20, 20, width - 40, height - 40);
+
+            ctx.strokeStyle = "#fbbf24"; // Garis Emas Dalam
+            ctx.lineWidth = 3;
+            ctx.strokeRect(35, 35, width - 70, height - 70);
+
+            // 4. HEADER TEXTS (Posisinya digeser naik ke atas demi estetika seimbang)
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+
+            // Judul Utama Kegiatan
+            ctx.font = "800 44px 'Poppins', sans-serif";
+            ctx.fillStyle = "#ffffff";
+            ctx.fillText("PENGUMUMAN KEGIATAN", width / 2, 95);
+
+            // Subtitle Sasaran Penerima Informasi
+            const targetText = document.getElementById('inputTarget').value.toUpperCase();
+            ctx.font = "bold 24px 'Poppins', sans-serif";
+            ctx.fillStyle = "#a7f3d0"; // Hijau mint terang
+            ctx.fillText(targetText, width / 2, 150);
+
+            // Kaligrafi Salam Pembuka Bahasa Arab (Header) menggunakan font Amiri
+            ctx.font = "bold 34px 'Amiri', serif";
+            ctx.fillStyle = "#fef08a"; // Kuning terang
+            ctx.fillText(salamArabHeader, width / 2, 205);
+
+            // 5. DETAIL INFORMASI UTAMA DALAM KARTU PUTIH (CARD PRESTIGE)
+            const boxY = 280;
+            const boxH = 280;
+            
+            // Gambar efek bayangan kartu putih
+            ctx.fillStyle = "#ffffff";
+            ctx.shadowColor = "rgba(15, 23, 42, 0.12)";
+            ctx.shadowBlur = 40;
+            ctx.shadowOffsetY = 15;
+            
+            // Menggambar wadah kartu putih informasi kegiatan
+            drawRoundedRect(ctx, 60, boxY, width - 120, boxH, 25, true, false);
+            ctx.shadowColor = "transparent"; // Atur ulang bayangan agar tidak bocor
+
+            // Tambahkan garis aksen dekorasi tebal di sisi kiri kartu
+            ctx.fillStyle = primaryColor;
+            drawRoundedRect(ctx, 60, boxY, 15, boxH, {tl: 25, bl: 25}, true, false);
+
+            // Memuat data isian form
+            const tempat = document.getElementById('inputTempat').value;
+            const waktu = document.getElementById('inputWaktu').value;
+            const peserta = document.getElementById('inputPeserta').value;
+            const materi = document.getElementById('inputMateri').value;
+
+            ctx.textAlign = "left";
+            
+            // Menulis kolom informasi kiri: Tempat & Waktu Mulai
+            drawInfoItem(ctx, 120, boxY + 55, "TEMPAT / MASJID", tempat);
+            drawInfoItem(ctx, 120, boxY + 165, "WAKTU PELAKSANAAN", waktu);
+            
+            // Menulis kolom informasi kanan: Sasaran Peserta & Materi Belajar BCM
+            drawInfoItem(ctx, 520, boxY + 55, "PESERTA", peserta);
+            drawInfoItem(ctx, 520, boxY + 165, "MATERI UTAMA", materi);
+
+            // 6. SEKSI INSTRUKSI / AMAL SHOLIH TATA TERTIB
+            ctx.textAlign = "center";
+            ctx.fillStyle = secondaryColor;
+            ctx.font = "800 28px 'Poppins', sans-serif";
+            ctx.fillText("AMAL SHOLIH KEPADA ORANG TUA / WALI:", width / 2, boxY + boxH + 60);
+
+            // Memisahkan dan mencetak tiap baris amal sholih
+            const nbText = document.getElementById('inputNB').value;
+            const rules = nbText.split('\n').filter(line => line.trim() !== '');
+            
+            ctx.textAlign = "left";
+            let ruleY = boxY + boxH + 115;
+            
+            rules.forEach((rule, idx) => {
+                if (idx < 6) { // Batasi maksimal 6 baris agar rapi dan pas di layar
+                    // Gambar lingkaran bulat hijau untuk nomor
+                    ctx.fillStyle = primaryColor;
+                    ctx.beginPath();
+                    ctx.arc(90, ruleY, 18, 0, 2 * Math.PI);
+                    ctx.fill();
+
+                    // Tuliskan angka di tengah lingkaran
+                    ctx.fillStyle = "#ffffff";
+                    ctx.font = "bold 15px 'Poppins', sans-serif";
+                    ctx.textAlign = "center";
+                    ctx.fillText(idx + 1, 90, ruleY + 1);
+
+                    // Tuliskan teks instruksi amal sholih
+                    ctx.fillStyle = "#1e293b";
+                    ctx.font = "600 19px 'Poppins', sans-serif";
+                    ctx.textAlign = "left";
+                    ctx.fillText(rule, 125, ruleY + 1);
+
+                    ruleY += 52;
+                }
+            });
+
+            // 7. KATA PENUTUP, ALHAMDULILLAHI JAZAKUMULLAHU KHAIRA & SALAM
+            const footerY = height - 170;
+
+            // Baris penutup doa kelancaran kegiatan
+            ctx.textAlign = "center";
+            ctx.fillStyle = primaryColor;
+            ctx.font = "italic 600 19px 'Poppins', sans-serif";
+            ctx.fillText("Mugo-Mugo Allah Paring Aman, Selamat, Lancar, dan Barokah.", width / 2, footerY);
+
+            // Doa Syukur Hamdalah Arab Asli (Footer) menggunakan font Amiri
+            ctx.font = "bold 34px 'Amiri', serif";
+            ctx.fillStyle = secondaryColor;
+            ctx.fillText(hamdalahArabFooter, width / 2, footerY + 55);
+
+            // Salam Penutup Arab Asli (Footer) menggunakan font Amiri
+            ctx.font = "bold 26px 'Amiri', serif";
+            ctx.fillStyle = "#64748b";
+            ctx.fillText(salamArabFooter, width / 2, footerY + 105);
+
+            // Sinkronkan ke elemen gambar preview agar bisa disimpan pengguna HP
+            const preview = document.getElementById('previewImage');
+            preview.src = canvas.toDataURL('image/jpeg', 0.95);
+        }
+
+        // Helper menggambar persegi sudut membulat (Rounded Rectangle)
+        function drawRoundedRect(ctx, x, y, width, height, radius, fill, stroke) {
+            let cornerRadius = { tl: 0, tr: 0, br: 0, bl: 0 };
+            if (typeof radius === 'number') {
+                cornerRadius = { tl: radius, tr: radius, br: radius, bl: radius };
+            } else {
+                Object.assign(cornerRadius, radius);
+            }
+
+            ctx.beginPath();
+            ctx.moveTo(x + cornerRadius.tl, y);
+            ctx.lineTo(x + width - cornerRadius.tr, y);
+            ctx.quadraticCurveTo(x + width, y, x + width, y + cornerRadius.tr);
+            ctx.lineTo(x + width, y + height - cornerRadius.br);
+            ctx.quadraticCurveTo(x + width, y + height, x + width - cornerRadius.br, y + height);
+            ctx.lineTo(x + cornerRadius.bl, y + height);
+            ctx.quadraticCurveTo(x, y + height, x, y + height - cornerRadius.bl);
+            ctx.lineTo(x, y + cornerRadius.tl);
+            ctx.quadraticCurveTo(x, y, x + cornerRadius.tl, y);
+            ctx.closePath();
+
+            if (fill) ctx.fill();
+            if (stroke) ctx.stroke();
+        }
+
+        // Helper menulis detail ringkasan acara secara teratur
+        function drawInfoItem(ctx, x, y, label, val) {
+            ctx.font = "800 14px 'Poppins', sans-serif";
+            ctx.fillStyle = "#64748b"; // Warna Slate Grey
+            ctx.fillText(label, x, y);
+
+            ctx.font = "bold 20px 'Poppins', sans-serif";
+            ctx.fillStyle = "#0f172a"; // Warna Gelap Tajam
+            ctx.fillText(val, x, y + 30);
+        }
+
+        // Fungsi unduh konvensional
+        function downloadFlyer() {
+            const canvas = document.getElementById('flyerCanvas');
+            const dataUrl = canvas.toDataURL('image/jpeg', 1.0);
+            
+            // Konversi gambar di preview diperbarui paksa sebelum diunduh
+            const preview = document.getElementById('previewImage');
+            preview.src = dataUrl;
+
+            // Membuat tautan unduhan
+            const link = document.createElement('a');
+            link.download = 'Pengumuman_Caberawit_LDII.jpeg';
+            link.href = dataUrl;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Berikan notifikasi bantuan jika di HP tidak berjalan otomatis
+            alert("Perintah unduh dikirim! Jika gambar tidak otomatis tersimpan di HP Anda, silakan gunakan tombol 'Buka Gambar Penuh' lalu tekan lama gambarnya.");
+        }
+
+        // Membuka Gambar di Layar Penuh (Safe Modal Lightbox)
+        function openInModal() {
+            const canvas = document.getElementById('flyerCanvas');
+            const dataUrl = canvas.toDataURL('image/jpeg', 1.0);
+            
+            const lightbox = document.getElementById('imageLightbox');
+            const img = document.getElementById('lightboxImage');
+            
+            img.src = dataUrl;
+            lightbox.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('imageLightbox').classList.add('hidden');
+        }
+
+        // Salin ringkasan teks WhatsApp ke clipboard
+        function shareDirect() {
+            const target = document.getElementById('inputTarget').value;
+            const tempat = document.getElementById('inputTempat').value;
+            const waktu = document.getElementById('inputWaktu').value;
+            const peserta = document.getElementById('inputPeserta').value;
+            const materi = document.getElementById('inputMateri').value;
+            const rules = document.getElementById('inputNB').value;
+
+            const fullText = `📌 *PENGUMUMAN KEGIATAN* 📌\n*${target}*\n\n1. Tempat: *${tempat}*\n2. Waktu: *${waktu}*\n3. Peserta: *${peserta}*\n4. Materi: *${materi}*\n\n*Amal Sholih NB:*\n${rules}\n\nMugo-mugo Allah paring aman, selamat, lancar dan barokah.`;
+            
+            const el = document.createElement('textarea');
+            el.value = fullText;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            
+            alert("Format pesan teks untuk grup WhatsApp berhasil disalin ke papan klip!");
+        }
+    </script>
+</body>
+</html>
+
+```
